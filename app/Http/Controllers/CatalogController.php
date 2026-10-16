@@ -153,6 +153,7 @@ class CatalogController extends Controller
             ]);
         }
 
+        $owner = urldecode($owner);
         $pets = collect($this->pets())->where('owner', $owner);
 
         return view('catalog.index', [
