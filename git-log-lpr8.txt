@@ -1,4 +1,22 @@
-﻿commit c79328f4145ddfc090215a42d2a98478f94136fd
+﻿commit 5eec7e6239a2e5b760c6a18e70b70de89a4ae4e4
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:42:17 +0500
+
+    ЛПР8: итоговый отчет по лабораторной работе
+
+ REPORT_LPR8.md | 652 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 652 insertions(+)
+
+commit 2166293f466012345ed16d9b85d1216846ad25c1
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:40:18 +0500
+
+    ЛПР8: добавление файла истории git-log-lpr8.txt
+
+ git-log-lpr8.txt | 129 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 129 insertions(+)
+
+commit c79328f4145ddfc090215a42d2a98478f94136fd
 Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
 Date:   2026-10-16 15:39:14 +0500
 
