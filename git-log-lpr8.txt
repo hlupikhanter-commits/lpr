@@ -1,0 +1,129 @@
+﻿commit c79328f4145ddfc090215a42d2a98478f94136fd
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:39:14 +0500
+
+    ЛПР8: тесты и уточнение декодирования URL владельца
+
+ app/Http/Controllers/CatalogController.php |  1 +
+ tests/Feature/ExampleTest.php              | 96 ++++++++++++++++++++++++++++--
+ 2 files changed, 92 insertions(+), 5 deletions(-)
+
+commit c0e25cfd9ba06d471fa37254000b72e2f6030997
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:37:43 +0500
+
+    ЛПР8 п.6: POST-форма
+
+ resources/views/feedback.blade.php | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit a18566af6620316e4a7371edb1182f77297bc4a7
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:37:20 +0500
+
+    ЛПР8 п.5: Blade-шаблоны
+
+ resources/views/catalog/index.blade.php  | 61 ++++++++++++++++++++++++++++++++
+ resources/views/catalog/owners.blade.php | 15 ++++++++
+ resources/views/catalog/show.blade.php   | 43 ++++++++++++++++++++++
+ resources/views/catalog/stats.blade.php  | 32 +++++++++++++++++
+ resources/views/errors/404.blade.php     | 16 +++++++++
+ resources/views/layouts/app.blade.php    | 40 +++++++++++++++++++++
+ 6 files changed, 207 insertions(+)
+
+commit 754b76560fd7f7978b558344c414be246c635e80
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:35:23 +0500
+
+    ЛПР8 п.4: контроллер каталога
+
+ app/Http/Controllers/CatalogController.php | 165 +++++++++++++++++++++++++++++
+ app/Http/Controllers/PageController.php    |  23 ++++
+ routes/web.php                             |  16 ++-
+ 3 files changed, 202 insertions(+), 2 deletions(-)
+
+commit 1a9f29456f09b1a270f9101febf1b82f1f93fd9d
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:34:00 +0500
+
+    ЛПР8 п.3: маршрут с параметром
+
+ routes/web.php | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 01ceca23a2417f55e8779537890c1f4489aed01c
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:30:31 +0500
+
+    ЛПР8 п.2: настройки .env и config/lab.php
+
+ .env.example   | 16 +++++++++++-----
+ config/lab.php |  9 +++++++++
+ 2 files changed, 20 insertions(+), 5 deletions(-)
+
+commit 3e026bcfa7fc49ee90192ece4f2fbc3a7c1da9a3
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:19:19 +0500
+
+    ЛПР8 п.1: установка Laravel
+
+ .editorconfig                                      |   18 +
+ .env.example                                       |   65 +
+ .gitattributes                                     |   11 +
+ .gitignore                                         |   27 +
+ .npmrc                                             |    2 +
+ AGENTS.md                                          |   47 +
+ CLAUDE.md                                          |   47 +
+ README.md                                          |   58 +
+ app/Http/Controllers/Controller.php                |    8 +
+ app/Models/User.php                                |   32 +
+ app/Providers/AppServiceProvider.php               |   24 +
+ artisan                                            |   18 +
+ bootstrap/app.php                                  |   21 +
+ bootstrap/cache/.gitignore                         |    2 +
+ bootstrap/providers.php                            |    7 +
+ composer.json                                      |   86 +
+ composer.lock                                      | 8381 ++++++++++++++++++++
+ config/app.php                                     |  126 +
+ config/auth.php                                    |  117 +
+ config/cache.php                                   |  136 +
+ config/database.php                                |  184 +
+ config/filesystems.php                             |   80 +
+ config/logging.php                                 |  140 +
+ config/mail.php                                    |  118 +
+ config/queue.php                                   |  129 +
+ config/services.php                                |   38 +
+ config/session.php                                 |  233 +
+ database/.gitignore                                |    1 +
+ database/factories/UserFactory.php                 |   45 +
+ .../0001_01_01_000000_create_users_table.php       |   49 +
+ .../0001_01_01_000001_create_cache_table.php       |   35 +
+ .../0001_01_01_000002_create_jobs_table.php        |   59 +
+ database/seeders/DatabaseSeeder.php                |   25 +
+ package.json                                       |   19 +
+ phpunit.xml                                        |   36 +
+ public/.htaccess                                   |   25 +
+ public/favicon.ico                                 |    0
+ public/index.php                                   |   20 +
+ public/robots.txt                                  |    2 +
+ resources/css/app.css                              |    9 +
+ resources/js/app.js                                |    1 +
+ resources/views/welcome.blade.php                  |  223 +
+ routes/console.php                                 |    8 +
+ routes/web.php                                     |    7 +
+ storage/app/.gitignore                             |    4 +
+ storage/app/private/.gitignore                     |    2 +
+ storage/app/public/.gitignore                      |    2 +
+ storage/framework/.gitignore                       |   10 +
+ storage/framework/cache/.gitignore                 |    4 +
+ storage/framework/cache/data/.gitignore            |    2 +
+ storage/framework/cache/locks/.gitignore           |    2 +
+ storage/framework/sessions/.gitignore              |    2 +
+ storage/framework/testing/.gitignore               |    2 +
+ storage/framework/views/.gitignore                 |    2 +
+ storage/logs/.gitignore                            |    2 +
+ tests/Feature/ExampleTest.php                      |   19 +
+ tests/TestCase.php                                 |   10 +
+ tests/Unit/ExampleTest.php                         |   16 +
+ vite.config.js                                     |   24 +
+ 59 files changed, 10822 insertions(+)
