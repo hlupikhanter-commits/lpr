@@ -1,4 +1,32 @@
-﻿commit 5eec7e6239a2e5b760c6a18e70b70de89a4ae4e4
+﻿commit ee39f1a1919485d0f1141437f99107d2f74b896d
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 16:11:18 +0500
+
+    ЛПР8: добавление отчета со скриншотами (PDF, HTML, MD)
+
+ REPORT_LPR8.html                    | 567 ++++++++++++++++++++++++++++++++++++
+ REPORT_LPR8.md                      |  44 ++-
+ REPORT_LPR8.pdf                     | Bin 0 -> 817628 bytes
+ screenshots/01_catalog.png          | Bin 0 -> 57787 bytes
+ screenshots/02_pet_show.png         | Bin 0 -> 36709 bytes
+ screenshots/03_filter_owner.png     | Bin 0 -> 45585 bytes
+ screenshots/04_feedback_success.png | Bin 0 -> 35923 bytes
+ screenshots/05_catalog_stats.png    | Bin 0 -> 41272 bytes
+ screenshots/06_error_404.png        | Bin 0 -> 34578 bytes
+ screenshots/07_terminal_obs1.png    | Bin 0 -> 46034 bytes
+ screenshots/08_hello_cyrillic.png   | Bin 0 -> 15360 bytes
+ 11 files changed, 607 insertions(+), 4 deletions(-)
+
+commit e31c787c4d750918115267047fde2a86f26357ec
+Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
+Date:   2026-10-16 15:42:31 +0500
+
+    ЛПР8: обновление git-log-lpr8.txt
+
+ git-log-lpr8.txt | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+commit 5eec7e6239a2e5b760c6a18e70b70de89a4ae4e4
 Author: MeshitbayevTemirlan <hlupikhanter@gmail.com>
 Date:   2026-10-16 15:42:17 +0500
 
