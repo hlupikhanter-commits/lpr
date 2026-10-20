@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PetController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect()->route('catalog.index'));
+Route::get('/', fn () => redirect()->route('pets.index'));
 
+// ЛПР 9: CRUD ресурс контроллер для сущности Pet
+Route::resource('pets', PetController::class)->except(['show']);
+
+// Сохраняем маршруты ЛПР 8 для совместимости
 Route::prefix('catalog')->name('catalog.')->controller(CatalogController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/stats', 'stats')->name('stats');

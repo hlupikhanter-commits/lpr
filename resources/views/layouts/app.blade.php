@@ -6,18 +6,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand bg-dark navbar-dark mb-4">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('catalog.index') }}">{{ config('app.name') }}</a>
+            <a class="navbar-brand fw-bold" href="{{ route('pets.index') }}">{{ config('app.name') }}</a>
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('catalog.index') }}">Каталог</a>
+                    <a class="nav-link {{ request()->routeIs('pets.*') ? 'active fw-bold' : '' }}" href="{{ route('pets.index') }}">Питомцы (CRUD)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('catalog.owner') }}">Владельцы</a>
+                    <a class="nav-link {{ request()->routeIs('catalog.index') ? 'active' : '' }}" href="{{ route('catalog.index') }}">Каталог (ЛПР 8)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('catalog.stats') }}">Статистика</a>
+                    <a class="nav-link {{ request()->routeIs('catalog.stats') ? 'active' : '' }}" href="{{ route('catalog.stats') }}">Статистика</a>
                 </li>
             </ul>
             <a class="nav-link text-light" href="{{ route('feedback.form') }}">Обратная связь</a>
@@ -25,7 +25,9 @@
     </nav>
     <main class="container flex-grow-1">
         @if (session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('status') }}
+            </div>
         @endif
         @yield('content')
     </main>
