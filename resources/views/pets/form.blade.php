@@ -108,7 +108,7 @@
                         </div>
 
                         <!-- Поле: Вакцинация -->
-                        <div class="form-check mb-4">
+                        <div class="form-check mb-3">
                             <input type="checkbox" name="is_vaccinated" id="is_vaccinated" value="1"
                                    class="form-check-input @error('is_vaccinated') is-invalid @enderror"
                                    @checked(old('is_vaccinated', $pet->is_vaccinated))>
@@ -118,6 +118,29 @@
                             @error('is_vaccinated')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
+                        <!-- ⭐ Связь M:N: Процедуры (чекбоксы) -->
+                        <div class="mb-4 p-3 bg-light rounded border">
+                            <label class="form-label fw-semibold">Пройденные процедуры (⭐ связь многие-ко-многим):</label>
+                            <div class="row">
+                                @php
+                                    $selectedProcedures = old('procedures', $pet->exists ? $pet->procedures->pluck('id')->toArray() : []);
+                                @endphp
+                                @foreach ($procedures as $procedure)
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="procedures[]"
+                                                   value="{{ $procedure->id }}" id="proc_{{ $procedure->id }}"
+                                                   @checked(in_array($procedure->id, (array)$selectedProcedures))>
+                                            <label class="form-check-label" for="proc_{{ $procedure->id }}">
+                                                {{ $procedure->name }}
+                                                <span class="text-muted small">({{ number_format($procedure->price, 2, ',', ' ') }} ₽)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
 
                         <div class="d-flex gap-2">

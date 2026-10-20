@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pet extends Model
 {
@@ -41,5 +42,13 @@ class Pet extends Model
     public function owner(): BelongsTo
     {
         return $this->belongsTo(Owner::class);
+    }
+
+    /**
+     * Процедуры питомца (связь многие-ко-многим M:N)
+     */
+    public function procedures(): BelongsToMany
+    {
+        return $this->belongsToMany(Procedure::class)->withTimestamps();
     }
 }

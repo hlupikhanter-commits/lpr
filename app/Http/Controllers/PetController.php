@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PetRequest;
 use App\Models\Owner;
 use App\Models\Pet;
+use App\Models\Procedure;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -14,7 +15,7 @@ class PetController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Pet::with('owner'); // Жадная загрузка связи для предотвращения N+1
+        $query = Pet::with(['owner', 'procedures']); // Жадная загрузка связей для предотвращения N+1
 
         // Поиск по основному строковому полю (кличка)
         if ($search = $request->query('q')) {
@@ -53,6 +54,7 @@ class PetController extends Controller
             'title' => 'Новый питомец',
             'pet' => new Pet(),
             'owners' => Owner::orderBy('full_name')->get(),
+            'procedures' => Procedure::orderBy('name')->get(),
         ]);
     }
 
@@ -61,7 +63,13 @@ class PetController extends Controller
      */
     public function store(PetRequest $request)
     {
-        $pet = Pet::create($request->validated());
+        $data = $request->validated();
+        $pet = Pet::create($data);
+
+        // ⭐ M:N связь: синхронизация процедур
+        if ($request->has('procedures')) {
+            $pet->procedures()->sync($request->input('procedures', []));
+        }
 
         return redirect()
             ->route('pets.index')
@@ -73,10 +81,13 @@ class PetController extends Controller
      */
     public function edit(Pet $pet)
     {
+        $pet->load('procedures');
+
         return view('pets.form', [
             'title' => 'Редактирование питомца',
             'pet' => $pet,
             'owners' => Owner::orderBy('full_name')->get(),
+            'procedures' => Procedure::orderBy('name')->get(),
         ]);
     }
 
@@ -85,7 +96,11 @@ class PetController extends Controller
      */
     public function update(PetRequest $request, Pet $pet)
     {
-        $pet->update($request->validated());
+        $data = $request->validated();
+        $pet->update($data);
+
+        // ⭐ M:N связь: синхронизация процедур
+        $pet->procedures()->sync($request->input('procedures', []));
 
         return redirect()
             ->route('pets.index')

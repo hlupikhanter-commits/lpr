@@ -14,6 +14,9 @@
                     <a class="nav-link {{ request()->routeIs('pets.*') ? 'active fw-bold' : '' }}" href="{{ route('pets.index') }}">Питомцы (CRUD)</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('owners.*') ? 'active fw-bold' : '' }}" href="{{ route('owners.index') }}">Владельцы (⭐ Родитель)</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('catalog.index') ? 'active' : '' }}" href="{{ route('catalog.index') }}">Каталог (ЛПР 8)</a>
                 </li>
                 <li class="nav-item">
@@ -27,6 +30,11 @@
         @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('status') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
             </div>
         @endif
         @yield('content')

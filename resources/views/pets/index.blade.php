@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1>{{ $title }}</h1>
+        <div>
+            <h1 class="mb-0">{{ $title }}</h1>
+            <p class="text-muted small mb-0">Сортировка по умолчанию: <strong>по кличке А→Я</strong> | Пагинация: <strong>6 записей на страницу</strong></p>
+        </div>
         <a href="{{ route('pets.create') }}" class="btn btn-success">+ Добавить питомца</a>
     </div>
 
@@ -48,6 +51,7 @@
                     <th>Дата рождения</th>
                     <th>Вес</th>
                     <th>Вакцинация</th>
+                    <th>Процедуры (⭐ M:N)</th>
                     <th class="text-end">Действия</th>
                 </tr>
             </thead>
@@ -58,13 +62,15 @@
                         <td>
                             <strong>{{ $pet->name }}</strong>
                             @if ($pet->description)
-                                <div class="small text-muted text-truncate" style="max-width: 250px;" title="{{ $pet->description }}">
+                                <div class="small text-muted text-truncate" style="max-width: 220px;" title="{{ $pet->description }}">
                                     {{ $pet->description }}
                                 </div>
                             @endif
                         </td>
                         <td>
-                            {{ $pet->owner->full_name }}
+                            <a href="{{ route('pets.index', ['owner_id' => $pet->owner->id]) }}" class="text-decoration-none fw-semibold">
+                                {{ $pet->owner->full_name }}
+                            </a>
                             <div class="small text-muted">{{ $pet->owner->phone }}</div>
                         </td>
                         <td><span class="badge bg-secondary">{{ $pet->species }}</span></td>
@@ -77,7 +83,16 @@
                                 <span class="badge bg-warning text-dark">Нет прививки</span>
                             @endif
                         </td>
-                        <td class="text-end">
+                        <td>
+                            @forelse ($pet->procedures as $procedure)
+                                <span class="badge bg-info text-dark mb-1" title="{{ $procedure->price }} ₽">
+                                    {{ $procedure->name }}
+                                </span>
+                            @empty
+                                <span class="text-muted small">—</span>
+                            @endforelse
+                        </td>
+                        <td class="text-end text-nowrap">
                             <a href="{{ route('pets.edit', $pet) }}" class="btn btn-sm btn-outline-primary">Изменить</a>
                             <form method="POST" action="{{ route('pets.destroy', $pet) }}" class="d-inline"
                                   onsubmit="return confirm('Вы уверены, что хотите удалить запись «{{ $pet->name }}»?')">
@@ -89,7 +104,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center text-muted py-4">
+                        <td colspan="9" class="text-center text-muted py-4">
                             Питомцы не найдены. Попробуйте изменить параметры поиска.
                         </td>
                     </tr>
